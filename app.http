@@ -1,0 +1,471 @@
+GET http://localhost:8000/users 
+###
+GET http://localhost:8000/users/5
+###
+GET http://localhost:8000/cities
+###
+GET http://localhost:8000/cities/2
+###
+GET http://localhost:8000/states
+###
+GET http://localhost:8000/states/1
+###
+GET http://localhost:8000/drivers
+###
+GET http://localhost:8000/drivers/2
+###
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "name": "John maina",
+    "contact_phone": "12344767890",
+    "phone_verified": "true",
+    "email": "johnmaina@gmail.com",
+    "email_verified": "true",
+    "confirmation_code": "7234",
+    "password": "8634565348",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+PUT http://localhost:8000/users/8
+Content-Type: application/json
+
+{
+    "name": "Mary maina",
+    "contact_phone": "12344767890",
+    "phone_verified": "true",
+    "email": "mary@gmail",
+    "email_verified": "true",
+    "confirmation_code": "7234",
+    "password": "8634565348",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/users/8
+
+###
+POST http://localhost:8000/cities/
+Content-Type: application/json
+
+    {
+        "name": "Kisumu",
+        "state_id": 1
+    }
+
+###
+PUT http://localhost:8000/cities/3
+Content-Type: application/json
+
+    {
+        "name": "Kawangware",
+        "state_id": 1
+    }
+
+###
+DELETE http://localhost:8000/cities/3
+
+###
+POST http://localhost:8000/states
+Content-Type: application/json
+
+    {
+        
+        "name": "Kisii",
+        "code": "4658"
+    }
+
+###
+PUT http://localhost:8000/states/4
+Content-Type: application/json
+
+    {
+        
+        "name": "Eldoret",
+        "code": "4658"
+    }
+
+###
+DELETE http://localhost:8000/states/5
+
+###
+POST http://localhost:8000/drivers
+Content-Type: application/json
+
+    {   "id": "4",
+        "car_make": "Toyota",
+        "car_model": "Vitz",
+        "car_year": "2019",
+        "user_id" : "1",
+        "online": "true",
+        "delivering": "true",
+        "created_at": "2021-09-01",
+        "updated_at": "2021-09-01"
+    }
+
+###
+PUT http://localhost:8000/drivers/4
+Content-Type: application/json
+
+    {   
+        "car_make": "mazda",
+        "car_model": "Vitz",
+        "car_year": "2019",
+        "user_id" : "1",
+        "online": "true",
+        "delivering": "true",
+        "created_at": "2021-09-01",
+        "updated_at": "2021-09-01"
+    }
+
+###
+DELETE http://localhost:8000/drivers/4
+
+###
+GET http://localhost:8000/restaurants
+
+###
+GET http://localhost:8000/restaurants/2
+
+###
+POST http://localhost:8000/restaurants
+Content-Type: application/json
+
+{
+    "name": "Java",
+   "street_address": "Kenyatta Avenue",
+   "zip_code": "00100",
+   "state": "Nairobi",
+    "city_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+PUT http://localhost:8000/restaurants/3
+Content-Type: application/json
+
+{
+    "name": "Java",
+   "street_address": "Kenyatta Avenue",
+   "zip_code": "00100",
+   "state": "Mombasa",
+    "city_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/restaurants/3
+
+###
+GET http://localhost:8000/categories
+
+###
+GET http://localhost:8000/categories/2
+
+###
+POST http://localhost:8000/categories
+Content-Type: application/json
+
+{
+    "name": "Fast Food"
+}
+
+###
+PUT http://localhost:8000/categories/3
+Content-Type: application/json
+
+{
+    "name": "Fast FF-Food"
+}
+
+###
+DELETE http://localhost:8000/categories/3
+
+###
+GET http://localhost:8000/menu-Items
+
+###
+GET http://localhost:8000/menu-items/2
+
+###
+POST http://localhost:8000/menu-items
+Content-Type: application/json
+
+{
+    "id": "8",
+    "name": "Chips",
+    "restaurant_id": "1",
+    "category_id": "1",
+    "description": "Fried chips",
+    "ingredients": "potatoes, salt, oil",
+    "price": "200",
+    "active": "true",
+    "category_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01",
+    "category": "best"
+}
+
+###
+PUT http://localhost:8000/menu-items/8
+Content-Type: application/json
+
+{
+    "name": "Chips chips",
+    "restaurant_id": "1",
+    "category_id": "1",
+    "description": "Fried chips",
+    "ingredients": "potatoes, salt, oil",
+    "price": "200",
+    "active": "true",
+    "category_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01",
+    "category": "best"
+}
+
+###
+DELETE http://localhost:8000/menu-items/8
+
+###
+GET http://localhost:8000/addresses
+
+###
+GET http://localhost:8000/addresses/2
+
+###
+POST http://localhost:8000/addresses
+Content-Type: application/json
+
+{
+    "id": "8",
+    "street_address_1": "Kenyatta Avenue",
+    "street_address_2": "Kenyatta Avenue",
+    "zip_code": "00100",
+    "delivery_instructions": "Deliver to the gate",
+    "user_id": "1",
+    "city_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+PUT http://localhost:8000/addresses/8
+Content-Type: application/json
+
+{
+    "street_address_1": "Kenyatta",
+    "street_address_2": "Kenyatta Avenue",
+    "zip_code": "00100",
+    "delivery_instructions": "Deliver to the gate",
+    "user_id": "1",
+    "city_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/addresses/8
+
+###
+POST  http://localhost:8000/restaurantOwners
+Content-Type: application/json
+
+{
+    "id": "7",
+   "restaurant_id": "1",
+   "owner_id": "1"
+}
+
+###
+GET http://localhost:8000/restaurantOwners/7
+
+###
+GET http://localhost:8000/restaurantOwners
+
+###
+PUT http://localhost:8000/restaurantOwners/7
+Content-Type: application/json
+
+{
+   "restaurant_id": "2",
+   "owner_id": "1"
+}
+
+###
+POST http://localhost:8000/orders
+Content-Type: application/json
+
+{
+    "id": "10",
+    "restaurant_id": "1",
+    "estimated_delivery_time": "11/11/2020",
+    "actual_delivery_time": "11/11/2020",
+    "delivery_address_id": "1",
+    "user_id": "1",
+    "driver_id": "1",
+    "price": "200",
+    "discount": "0",
+    "final_price": "200",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+PUT http://localhost:8000/orders/10
+Content-Type: application/json
+
+{
+    "restaurant_id": "1",
+    "estimated_delivery_time": "11/11/2020",
+    "actual_delivery_time": "11/11/2020",
+    "delivery_address_id": "1",
+    "user_id": "1",
+    "driver_id": "1",
+    "price": "2000",
+    "discount": "0",
+    "final_price": "2000",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/orders/1
+
+###
+GET http://localhost:8000/orders
+
+###
+GET http://localhost:8000/orders/2
+
+###
+POST http://localhost:8000/comments
+Content-Type: application/json
+
+{
+    "order_id": "8",
+    "user_id": "1",
+    "comment_text": "Good service",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+GET http://localhost:8000/comments
+
+###
+GET http://localhost:8000/comments/4
+
+###
+PUT http://localhost:8000/comments/4
+Content-Type: application/json
+
+{
+    "order_id": "8",
+    "user_id": "1",
+    "comment_text": "Extremely Good service",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/comments/6
+
+###
+POST http://localhost:8000/status_catalogs
+Content-Type: application/json
+
+{
+    "id": "10",
+    "name": "Delivered",
+    "order_status": "Delivered"
+}
+
+###
+GET http://localhost:8000/status_catalogs
+
+###
+GET http://localhost:8000/status_catalogs/2
+
+###
+PUT http://localhost:8000/status_catalogs/10
+Content-Type: application/json
+
+{
+    "name": "Delivered",
+    "order_status": "Not Delivered"
+}
+
+###
+DELETE http://localhost:8000/status_catalogs/10
+
+###
+POST http://localhost:8000/orders_status
+Content-Type: application/json
+
+{
+    "id": "10",
+    "order_id": "5",
+    "status_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+GET http://localhost:8000/orders_status
+
+###
+GET http://localhost:8000/orders_status/2
+
+###
+PUT http://localhost:8000/orders_status/10
+Content-Type: application/json
+
+{
+    "order_id": "5",
+    "status_id": "1",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/orders_status/10
+
+###
+POST http://localhost:8000/order_menu_items
+Content-Type: application/json
+
+{
+    "order_id": "2",
+    "menu_item_id": "2",
+    "quantity": "2",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+PUT http://localhost:8000/order_menu_items/17
+Content-Type: application/json
+
+{
+    "order_id": "3",
+    "menu_item_id": "2",
+    "quantity": "33",
+    "created_at": "2021-09-01",
+    "updated_at": "2021-09-01"
+}
+
+###
+DELETE http://localhost:8000/order_menu_items/11
+
+###
+GET http://localhost:8000/order_menu_items
+
+###
+GET http://localhost:8000/order_menu_items/10
