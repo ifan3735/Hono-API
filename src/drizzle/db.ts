@@ -4,19 +4,15 @@ import { Client } from "pg";
 import * as schema from "./schema"
 
 export const client = new Client({
-    connectionString: process.env.Database_URL as string,  
+    connectionString: process.env.Database_URL as string,   //get the database url from the environment
 })
 
 const main = async () => {
-    await client.connect();
-    console.log("Connected to database") 
+    await client.connect();  //connect to the database
 }
-main().catch((err)=>{
-    console.log(err);
-    process.exit(1);
-});
+main();
 
 
-const db = drizzle(client, { schema, logger: true }) 
+const db = drizzle(client, { schema, logger: true })  //create a drizzle instance
 
-export default db;
+export default db;

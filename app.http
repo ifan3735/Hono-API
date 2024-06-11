@@ -1,6 +1,6 @@
 GET http://localhost:8000/users 
 ###
-GET http://localhost:8000/users/5
+GET http://localhost:8000/users/2
 ###
 GET http://localhost:8000/cities
 ###
@@ -469,3 +469,15 @@ GET http://localhost:8000/order_menu_items
 
 ###
 GET http://localhost:8000/order_menu_items/10
+
+###
+POST http://localhost:8000/register
+Content-Type: application/json
+
+{
+    
+    "user_id": 1,
+    "role": "admin",
+    "password": "123456",
+    "username": "Ifan Maina"
+}

@@ -1,4 +1,4 @@
-import { pgTable, timestamp, integer, text, serial, decimal, boolean, varchar, date } from 'drizzle-orm/pg-core';
+import { pgTable, timestamp, integer, text, serial, decimal, boolean, varchar, date, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from "drizzle-orm";
 
 // users table no. 1
@@ -16,6 +16,25 @@ export const usersTable = pgTable("users", {
 });
 
 export type UsersSelect=typeof usersTable.$inferSelect
+
+//authentications table
+export const authenticationTable = pgEnum("role", ["admin", "user"]);
+
+export const authTable = pgTable("auth_on_user", {
+  id: serial("id").primaryKey(),
+  user_id: integer("user_id").references(() => usersTable.id, { onDelete: 'cascade' }).notNull(),
+  role: authenticationTable("role").default("user"),
+  password: varchar("password", { length: 100 }),
+  username: varchar("userName", { length: 100 })
+});
+
+//relation between users and auth
+export const authRelations = relations(authTable, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [authTable.user_id],
+    references: [usersTable.id],
+  })
+}));
 
 
 // drivers table no. 2
@@ -319,3 +338,14 @@ export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) =>
 
 export type UserSelect=typeof usersTable.$inferSelect
 export type userInsert=typeof usersTable.$inferInsert
+
+
+//profile table
+export const profileTable = pgTable('profile', {
+  id: serial('id').primaryKey(),
+  user_id: integer('user_id').references(() => usersTable.id, { onDelete: 'cascade' }).notNull(),
+  bio: text('bio'),
+});
+
+
+

@@ -14,6 +14,7 @@ import { commentRouter } from './comments/comments.router'
 import { statusCatalogRouter } from './status_catalog/status_catalog.router'
 import { ordersStatusRouter } from './orders_status/orders_status.router'
 import { orderMenuItemRouter } from './order_menu_item/order_menu_item.router'
+import { authRouter } from './auth/auth.router'
 
 
 const app = new Hono()
@@ -36,6 +37,7 @@ app.route('/', commentRouter)
 app.route('/', statusCatalogRouter)
 app.route('/', ordersStatusRouter)
 app.route('/', orderMenuItemRouter)
+app.route('/', authRouter)
 const port = 8000
 console.log(`Server is running on port ${port}`)
 

@@ -1,3 +1,9 @@
+DO $$ BEGIN
+ CREATE TYPE "public"."role" AS ENUM('admin', 'user');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "address" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"street_address_1" varchar(100),
@@ -6,8 +12,16 @@ CREATE TABLE IF NOT EXISTS "address" (
 	"delivery_instructions" text,
 	"user_id" integer,
 	"city_id" integer,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "auth_on_user" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"user_id" integer NOT NULL,
+	"role" "role" DEFAULT 'user',
+	"password" varchar(100),
+	"userName" varchar(100)
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "category" (
@@ -26,8 +40,8 @@ CREATE TABLE IF NOT EXISTS "comments" (
 	"order_id" integer NOT NULL,
 	"user_id" integer NOT NULL,
 	"comment_text" text NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "drivers" (
@@ -38,8 +52,8 @@ CREATE TABLE IF NOT EXISTS "drivers" (
 	"user_id" integer NOT NULL,
 	"online" boolean NOT NULL,
 	"delivering" boolean NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "menu_item" (
@@ -51,8 +65,8 @@ CREATE TABLE IF NOT EXISTS "menu_item" (
 	"ingredients" text,
 	"price" numeric(10, 2) NOT NULL,
 	"active" boolean,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL,
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL,
 	"category" varchar(20)
 );
 --> statement-breakpoint
@@ -61,31 +75,37 @@ CREATE TABLE IF NOT EXISTS "order_menu_item" (
 	"order_id" integer NOT NULL,
 	"menu_item_id" integer NOT NULL,
 	"quantity" integer NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "orders_status" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"order_id" integer NOT NULL,
 	"status_id" integer NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "orders" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"restaurant_id" integer NOT NULL,
-	"estimated_delivery_time" timestamp NOT NULL,
-	"actual_delivery_time" timestamp,
+	"estimated_delivery_time" date NOT NULL,
+	"actual_delivery_time" date,
 	"delivery_address_id" integer NOT NULL,
 	"user_id" integer NOT NULL,
 	"driver_id" integer NOT NULL,
 	"price" numeric(10, 2) NOT NULL,
 	"discount" numeric(10, 2) NOT NULL,
 	"final_price" numeric(10, 2) NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "profile" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"user_id" integer NOT NULL,
+	"bio" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "restaurant_owner" (
@@ -101,8 +121,8 @@ CREATE TABLE IF NOT EXISTS "restaurant" (
 	"zip_code" varchar(20) NOT NULL,
 	"state" varchar(50) NOT NULL,
 	"city_id" integer NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "state" (
@@ -126,8 +146,8 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"email_verified" boolean,
 	"confirmation_code" varchar(10),
 	"password" varchar(100) NOT NULL,
-	"created_at" timestamp NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"created_at" date NOT NULL,
+	"updated_at" date NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN
@@ -138,6 +158,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "address" ADD CONSTRAINT "address_city_id_city_id_fk" FOREIGN KEY ("city_id") REFERENCES "public"."city"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "auth_on_user" ADD CONSTRAINT "auth_on_user_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -222,6 +248,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "orders" ADD CONSTRAINT "orders_driver_id_drivers_id_fk" FOREIGN KEY ("driver_id") REFERENCES "public"."drivers"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "profile" ADD CONSTRAINT "profile_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
