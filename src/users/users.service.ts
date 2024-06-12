@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import db from "../drizzle/db";
 import { UsersSelect, usersTable } from "../drizzle/schema";
 
+
 const usersService = async (limit?: number)=> {
     if (limit) {
         return await db.query.usersTable.findMany({
@@ -13,9 +14,48 @@ const usersService = async (limit?: number)=> {
 
 const getUserService = async (id: number)=> {
     return await db.query.usersTable.findFirst({
-        where: eq(usersTable.id, id)
-    })
+        where: eq(usersTable.id, id), 
+        with: {
+            addresses: {
+                columns: {
+                    street_address_1: true,
+                    street_address_2: true,
+                    zip_code: true,
+                    city_id: true,
+                }
+            },
+            drivers: {
+                columns: {
+                    car_make: true,
+                    car_model: true,
+                    car_year: true,
+                    online: true
+            }
+            },
+            orders: {
+                columns: {
+                    restaurant_id: true,
+                    estimated_delivery_time: true,
+                    price: true,
+                    discount: true,
+                    final_price: true
+                }
+            },
+            comments: {
+                columns: {
+                    comment_text: true
+                }
+            },
+           restaurantOwners: {
+            columns: {
+                restaurant_id: true
+           }
+            }
+        }
+            
+        })
 }
+
 
 export{
     usersService,

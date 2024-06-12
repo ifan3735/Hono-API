@@ -16,6 +16,7 @@ const comments_router_1 = require("./comments/comments.router");
 const status_catalog_router_1 = require("./status_catalog/status_catalog.router");
 const orders_status_router_1 = require("./orders_status/orders_status.router");
 const order_menu_item_router_1 = require("./order_menu_item/order_menu_item.router");
+const auth_router_1 = require("./auth/auth.router");
 const app = new hono_1.Hono();
 app.get('/', (c) => {
     return c.text('Hello Hono!');
@@ -34,6 +35,7 @@ app.route('/', comments_router_1.commentRouter);
 app.route('/', status_catalog_router_1.statusCatalogRouter);
 app.route('/', orders_status_router_1.ordersStatusRouter);
 app.route('/', order_menu_item_router_1.orderMenuItemRouter);
+app.route('/', auth_router_1.authRouter);
 const port = 8000;
 console.log(`Server is running on port ${port}`);
 (0, node_server_1.serve)({

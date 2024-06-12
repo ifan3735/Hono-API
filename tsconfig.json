@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "target": "ES2022",
     "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
-    "moduleResolution": "Node",
     "strict": true,
     "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
-  },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "src/users.user.controller.ts"
-  ],
- "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "esModuleInterop": true,
+    "types": ["node"]
+  }, 
+    "include": ["src"],
+    "exclude": ["node_modules","dist"]
 }

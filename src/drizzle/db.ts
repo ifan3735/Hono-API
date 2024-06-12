@@ -15,4 +15,4 @@ main();
 
 const db = drizzle(client, { schema, logger: true })  //create a drizzle instance
 
-export default db;
+export default db;

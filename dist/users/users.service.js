@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteOneUser = exports.updateUser = exports.createUser = exports.getUserService = exports.usersService = void 0;
 const drizzle_orm_1 = require("drizzle-orm");
-const db_1 = require("../drizzle/db");
+const db_1 = __importDefault(require("../drizzle/db"));
 const schema_1 = require("../drizzle/schema");
 const usersService = async (limit) => {
     if (limit) {
@@ -15,7 +18,44 @@ const usersService = async (limit) => {
 exports.usersService = usersService;
 const getUserService = async (id) => {
     return await db_1.default.query.usersTable.findFirst({
-        where: (0, drizzle_orm_1.eq)(schema_1.usersTable.id, id)
+        where: (0, drizzle_orm_1.eq)(schema_1.usersTable.id, id),
+        with: {
+            addresses: {
+                columns: {
+                    street_address_1: true,
+                    street_address_2: true,
+                    zip_code: true,
+                    city_id: true,
+                }
+            },
+            drivers: {
+                columns: {
+                    car_make: true,
+                    car_model: true,
+                    car_year: true,
+                    online: true
+                }
+            },
+            orders: {
+                columns: {
+                    restaurant_id: true,
+                    estimated_delivery_time: true,
+                    price: true,
+                    discount: true,
+                    final_price: true
+                }
+            },
+            comments: {
+                columns: {
+                    comment_text: true
+                }
+            },
+            restaurantOwners: {
+                columns: {
+                    restaurant_id: true
+                }
+            }
+        }
     });
 };
 exports.getUserService = getUserService;

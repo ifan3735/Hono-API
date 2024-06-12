@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteRestaurant = exports.updateRestaurant = exports.createRestaurant = exports.getRestaurantService = exports.restaurantsService = void 0;
 const drizzle_orm_1 = require("drizzle-orm");
-const db_1 = require("../drizzle/db");
+const db_1 = __importDefault(require("../drizzle/db"));
 const schema_1 = require("../drizzle/schema");
 const restaurantsService = async (limit) => {
     if (limit) {
