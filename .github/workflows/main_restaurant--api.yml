@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - Hono
+name: Build and deploy Node.js app to Azure Web App - restaurant--api
 
 on:
   push:
@@ -57,15 +57,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_ACF04135D9B24CC88938303ED277B7CD }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1EAA34CBE36744AB93B8C587E7CC4919 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2EADC5326D254E8C8491AE33655B862B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0C69FEB8E558433D8BDCE5CE472EB056 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BBBF47EFE3A84CD3AA75D0B994055154 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1D366BDD65EB44FAA7C8D6B36F43F549 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'Hono'
+          app-name: 'restaurant--api'
           slot-name: 'Production'
           package: .
           
