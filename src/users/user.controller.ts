@@ -5,7 +5,7 @@ import { serial } from "drizzle-orm/mysql-core";
 import bcrypt from "bcrypt";
 
 
-const listUsers = async (c: Context) => {
+export const listUsers = async (c: Context) => {
     try {
         const limit = Number(c.req.query('limit'))
 
@@ -19,7 +19,7 @@ const listUsers = async (c: Context) => {
     }
 }
 
-const getUser = async (c: Context) => {
+export const getUser = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("Invalid ID", 400);
 
@@ -30,17 +30,11 @@ const getUser = async (c: Context) => {
     return c.json(user, 200);
 }
 
-export{
-    listUsers,
-    getUser
-}
 
 export const createOneUser = async (c: Context) => {
     try {
         const user = await c.req.json();
-        const password = user.password;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        user.password = hashedPassword;
+
         await createUser(user);
         return c.text("User created successfully", 201);
     } catch (error: any) {
