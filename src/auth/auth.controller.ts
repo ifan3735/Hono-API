@@ -5,6 +5,8 @@ import { Context } from "hono";
 import { createAuthUserService, userLoginService } from "./auth.service";
 import { sign } from "hono/jwt"; // Import the 'sign' function from the 'jsonwebtoken' mo
 import bcrypt from "bcrypt";
+
+
 export const authenticateUser = async (c: Context) => {
     try {
         const user = await c.req.json();
