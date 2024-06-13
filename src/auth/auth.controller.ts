@@ -5,13 +5,13 @@ import { Context } from "hono";
 import { createAuthUserService, userLoginService } from "./auth.service";
 import { sign } from "hono/jwt"; // Import the 'sign' function from the 'jsonwebtoken' module
 
-import bcrypt from "bcrypt";
+import bycrpt from "bcrypt";
 
 export const authenticateUser = async (c: Context) => {
     try {
         const user = await c.req.json();
         const pass = user.password;
-        const hashedPassword = await bcrypt.hash(pass, 10);
+        const hashedPassword = await bycrpt.hash(pass, 10);
         user.password = hashedPassword;
         const createdUser = await createAuthUserService(user);
         if (!createdUser) return c.text("User not created", 404);
@@ -30,7 +30,7 @@ export const signup = async(c:Context)=>{
         const userExists = await userLoginService(user);
         if(userExists === null) return c.json({error: "user does not exist"},404)
 
-            const userMatch = await bcrypt.compare(user.password,userExists?.password as string);
+            const userMatch = await bycrpt.compare(user.password,userExists?.password as string);
             if(!userMatch) {return c.json({error: "Invalid Credentials"},401)
             }else{
                 const payload = {

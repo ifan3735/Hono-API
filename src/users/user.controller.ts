@@ -2,7 +2,7 @@ import { Context } from "hono";
 import { usersService, getUserService, createUser, updateUser, deleteOneUser} from "./users.service";
 import { UsersSelect } from "../drizzle/schema";
 import { serial } from "drizzle-orm/mysql-core";
-import bcrypt from "bcrypt";
+import bycrpt from "bcrypt";
 
 
 const listUsers = async (c: Context) => {
@@ -39,7 +39,7 @@ export const createOneUser = async (c: Context) => {
     try {
         const user = await c.req.json();
         const password = user.password;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bycrpt.hash(password, 10);
         user.password = hashedPassword;
         await createUser(user);
         return c.text("User created successfully", 201);
