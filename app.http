@@ -488,10 +488,10 @@ Content-Type: application/json
 
 {
     
-    "user_id": 1,
-    "role": "user",
-    "password": "123yrir",
-    "username": "kip chir"
+    "user_id": 8,
+    "role": "driver",
+    "password": "1255rir",
+    "username": "enock"
 }
 
 ###
@@ -523,3 +523,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklmYW4gTWFp
 ###
 GET http://localhost:8000/users
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklmYW4gTWFpbmEiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgxOTMyOTB9.GQNeE7d_LNIgMpwAkRLX94w--AG0GTY9mVtigRNxSAA
+
+

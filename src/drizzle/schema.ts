@@ -18,7 +18,7 @@ export const usersTable = pgTable("users", {
 export type UsersSelect=typeof usersTable.$inferSelect
 
 //authentications table
-export const authenticationTable = pgEnum("role", ["admin", "user", "both"]);
+export const authenticationTable = pgEnum("role", ["admin", "user", "both", "driver", "restaurant_owner"]);
 
 export const authTable = pgTable("auth_on_user", {
   id: serial("id").primaryKey(),
