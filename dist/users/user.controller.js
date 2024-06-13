@@ -1,11 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.updateOneUser = exports.createOneUser = exports.getUser = exports.listUsers = void 0;
 const users_service_1 = require("./users.service");
-const bcrypt_1 = __importDefault(require("bcrypt"));
 const listUsers = async (c) => {
     try {
         const limit = Number(c.req.query('limit'));
@@ -34,9 +30,6 @@ exports.getUser = getUser;
 const createOneUser = async (c) => {
     try {
         const user = await c.req.json();
-        const password = user.password;
-        const hashedPassword = await bcrypt_1.default.hash(password, 10);
-        user.password = hashedPassword;
         await (0, users_service_1.createUser)(user);
         return c.text("User created successfully", 201);
     }
