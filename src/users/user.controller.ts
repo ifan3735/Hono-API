@@ -2,7 +2,7 @@ import { Context } from "hono";
 import { usersService, getUserService, createUser, updateUser, deleteOneUser} from "./users.service";
 import { UsersSelect } from "../drizzle/schema";
 import { serial } from "drizzle-orm/mysql-core";
-import * as bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 
 const listUsers = async (c: Context) => {

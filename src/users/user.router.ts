@@ -15,8 +15,10 @@ userRouter.get("/users", adminRoleAuth, listUsers);
 //get a single user    api/users/1
 userRouter.get("/users/:id", bothRoleAuth, getUser)
 
-userRouter.post("/users", createOneUser)
+userRouter.post("/users", adminRoleAuth, createOneUser)
 
-userRouter.put("/users/:id", createOneUser)
+userRouter.put("/users/:id", adminRoleAuth, createOneUser)
 
-userRouter.delete("/users/:id", deleteUser)
+userRouter.delete("/users/:id",bothRoleAuth, deleteUser)
+
+
