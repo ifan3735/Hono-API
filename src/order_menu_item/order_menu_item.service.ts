@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import db from "../drizzle/db";
+import {db}  from "../drizzle/db";
 import { OrderMenuItemSelect, orderMenuItemTable } from "../drizzle/schema";
 
 const orderMenuItemsService = async (limit?: number)=> {

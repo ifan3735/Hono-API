@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import db from "../drizzle/db";
+import {db}  from "../drizzle/db";
 import { StatusCatalogSelect, statusCatalogTable } from "../drizzle/schema";
 
 const statusCatalogService = async (limit?: number)=> {

@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import db from "../drizzle/db";
+import {db} from "../drizzle/db";
 import { AddressSelect, addressTable } from "../drizzle/schema";
 
 const addressesService = async (limit?: number)=> {
