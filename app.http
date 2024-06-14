@@ -2,6 +2,8 @@ GET http://localhost:8000/users
 ###
 GET http://localhost:8000/users/2
 ###
+GET http://localhost:8000/
+###
 GET http://localhost:8000/cities
 ###
 GET http://localhost:8000/cities/2

@@ -38,10 +38,12 @@ app.route('/', statusCatalogRouter)
 app.route('/', ordersStatusRouter)
 app.route('/', orderMenuItemRouter)
 app.route('/', authRouter)
-const port = 8000
-console.log(`Server is running on port ${port}`)
+
+
 
 serve({
   fetch: app.fetch,
-  port
+  port: Number(process.env.PORT)
 })
+
+console.log(`Server is running on port ${process.env.PORT}`)
