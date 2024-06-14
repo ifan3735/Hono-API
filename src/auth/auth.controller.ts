@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { authTable } from "../drizzle/schema";
-import db from "../drizzle/db";
+import {db} from "../drizzle/db";
 import { Context } from "hono";
 import { createAuthUserService, userLoginService } from "./auth.service";
 import { sign } from "hono/jwt"; // Import the 'sign' function from the 'jsonwebtoken' mo
