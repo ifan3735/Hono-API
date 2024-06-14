@@ -7,6 +7,7 @@ exports.deleteOrder = exports.updateOrder = exports.createOrder = exports.getOrd
 const drizzle_orm_1 = require("drizzle-orm");
 const db_1 = __importDefault(require("../drizzle/db"));
 const schema_1 = require("../drizzle/schema");
+const { use } = require("hono/jsx");
 const ordersService = async (limit) => {
     if (limit) {
         return await db_1.default.query.ordersTable.findMany({
@@ -18,7 +19,14 @@ const ordersService = async (limit) => {
 exports.ordersService = ordersService;
 const getOrderService = async (id) => {
     return await db_1.default.query.ordersTable.findFirst({
-        where: (0, drizzle_orm_1.eq)(schema_1.ordersTable.id, id)
+        where: (0, drizzle_orm_1.eq)(schema_1.ordersTable.id, id),
+        with: {
+            columns: {
+                restaurant_id: false,
+                user_id: false,
+                driver_id: false
+            }
+        }
     });
 };
 exports.getOrderService = getOrderService;

@@ -513,8 +513,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklmYW4gTWFpbmEiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgyODA0MzF9.AVsHfXfCtqZg1rKkk8CiRkf3Kjr9s3uHPFYKFsb8MbI
+GET http://localhost:8000/users/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklmYW4gTWFpbmEiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgyOTU0MDN9.wwIjqXMx_tqssQlu9n7wWLvVHqQX-Mn-7QPfcHFGZ84
 ###
 GET http://localhost:8000/users/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklmYW4gTWFpbmEiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgyMDIxODN9.cK644aWx57OQQ1yKz8ljTKyk1IicinFA4szcKCTa9Gw
